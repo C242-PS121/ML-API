@@ -27,3 +27,5 @@ steps:
     - 'asia-southeast2'
 images:
   - 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest'
+options:
+  logging: CLOUD_LOGGING_ONLY
