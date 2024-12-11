@@ -1,4 +1,13 @@
 steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+    - 'secrets'
+    - 'versions'
+    - 'access'
+    - 'latest'
+    - '--secret=env_vars'
+    - '--out-file=.env'
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest', '.']
@@ -16,5 +25,5 @@ steps:
     - 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest'
     - '--region'
     - 'asia-southeast2'
-  images:
+images:
   - 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest'
