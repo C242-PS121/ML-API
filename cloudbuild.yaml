@@ -8,24 +8,26 @@ steps:
     - 'latest'
     - '--secret=env-vars'
     - '--out-file=.env'
-  # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest', '.']
-  # Push the container image to Container Registry
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/thriftify-registry/ml-api:latest', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest']
-  # Deploy container image to Cloud Run
+    args: ['push', 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/thriftify-registry/ml-api:latest']
+
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
     - 'run'
     - 'deploy'
-    - 'ml-api'
+    - 'thriftify-ml-api'
     - '--image'
-    - 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest'
+    - 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/thriftify-registry/ml-api:latest'
     - '--region'
     - 'asia-southeast2'
+    - '--allow-unauthenticated'
+    - '--cpu=2'
+    - '--memory=1Gi'
+    - '--execution-environment=gen2'
 images:
-  - 'gcr.io/$PROJECT_ID/thriftify-registry/ml-api:latest'
+  - 'asia-southeast2-docker.pkg.dev/$PROJECT_ID/thriftify-registry/ml-api:latest'
 options:
   logging: CLOUD_LOGGING_ONLY
