@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = load_model("./src/model/hybridModel_03.h5")
+model = load_model("./src/model/hybridmodel.h5")
 
 article_classes = {
     0: "Backpacks",
