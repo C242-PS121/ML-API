@@ -6,7 +6,7 @@ steps:
     - 'versions'
     - 'access'
     - 'latest'
-    - '--secret=env_vars'
+    - '--secret=env-vars'
     - '--out-file=.env'
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
