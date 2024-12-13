@@ -5,6 +5,7 @@ COPY . .
 
 ENV UV_COMPILE_BYTECODE=1
 ENV UV_LINK_MODE=copy
+ENV TF_CPP_MIN_LOG_LEVEL=2
 
 RUN uv sync --frozen --no-install-project --no-dev
 

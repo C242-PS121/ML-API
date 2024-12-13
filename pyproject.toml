@@ -58,7 +58,6 @@ dependencies = [
     "starlette==0.41.3",
     "tensorboard==2.18.0",
     "tensorboard-data-server==0.7.2",
-    "tensorflow==2.18.0",
     "tensorflow-io-gcs-filesystem==0.37.1",
     "termcolor==2.5.0",
     "typer==0.15.1",
@@ -72,4 +71,5 @@ dependencies = [
     "wheel==0.45.1",
     "wrapt==1.17.0",
     "opencv-python-headless>=4.10.0.84",
+    "tensorflow-cpu>=2.18.0",
 ]

@@ -4,7 +4,11 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 import cv2
 import numpy as np
+import logging
 from jwt_auth import JWTBearer
+
+logger = logging.getLogger("uvicorn.error")
+logger.propagate = False
 
 app = FastAPI()
 app.add_middleware(
@@ -15,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = load_model("./src/model/hybridmodel.h5")
+model = load_model("./src/model/hybridModel_03.h5")
 
 article_classes = {
     0: "Backpacks",
@@ -59,3 +63,4 @@ async def classify(file: UploadFile):
     usage_name = usage_classes[usage[0]]
 
     return {"message": "success", "data": {"type": article_name, "usage": usage_name}}
+
